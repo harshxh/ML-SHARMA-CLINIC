@@ -14,3 +14,33 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Returns all appointment submissions
+ * @summary List all appointments
+ */
+export const ListAppointmentsResponseItem = zod.object({
+  id: zod.number(),
+  name: zod.string(),
+  phone: zod.string(),
+  email: zod.string().nullish(),
+  preferredDate: zod.string().nullish(),
+  preferredTime: zod.string().nullish(),
+  message: zod.string().nullish(),
+  status: zod.string(),
+  createdAt: zod.date(),
+});
+export const ListAppointmentsResponse = zod.array(ListAppointmentsResponseItem);
+
+/**
+ * Submit a new appointment booking request
+ * @summary Create appointment request
+ */
+export const CreateAppointmentBody = zod.object({
+  name: zod.string(),
+  phone: zod.string(),
+  email: zod.string().nullish(),
+  preferredDate: zod.string().nullish(),
+  preferredTime: zod.string().nullish(),
+  message: zod.string().nullish(),
+});

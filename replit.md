@@ -4,6 +4,10 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Artifacts
+
+- **DR. M.L. SHARMA CLINIC** (`artifacts/dr-sharma-clinic`) — Premium clinic website at `/` with appointment booking form wired to the backend API.
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

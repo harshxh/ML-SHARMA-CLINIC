@@ -1,15 +1,67 @@
+import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useCreateAppointment } from "@workspace/api-client-react";
 import { 
   Star, Phone, MapPin, Clock, CalendarCheck, ShieldCheck, 
   HeartPulse, History, Users, ArrowRight, Accessibility, 
-  Baby, Stethoscope, Car
+  Baby, Stethoscope, Car, CheckCircle2, Loader2
 } from "lucide-react";
 
 export default function Home() {
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    preferredDate: "",
+    preferredTime: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  const createAppointment = useCreateAppointment({
+    mutation: {
+      onSuccess: () => {
+        setSubmitted(true);
+        setForm({ name: "", phone: "", email: "", preferredDate: "", preferredTime: "", message: "" });
+        setFormError("");
+      },
+      onError: () => {
+        setFormError("Something went wrong. Please try again or call us directly.");
+      },
+    },
+  });
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setFormError("");
+    if (!form.name.trim() || !form.phone.trim()) {
+      setFormError("Name and phone number are required.");
+      return;
+    }
+    createAppointment.mutate({
+      data: {
+        name: form.name,
+        phone: form.phone,
+        email: form.email || null,
+        preferredDate: form.preferredDate || null,
+        preferredTime: form.preferredTime || null,
+        message: form.message || null,
+      },
+    });
+  }
+
   return (
     <div className="flex flex-col min-h-screen relative" id="home">
       <Navbar />
@@ -17,7 +69,6 @@ export default function Home() {
       <main className="flex-1 pt-20">
         {/* HERO SECTION */}
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-muted/30">
-          {/* Background Image & Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
               src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
@@ -55,7 +106,7 @@ export default function Home() {
 
               <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="h-14 px-8 text-base rounded-full shadow-lg shadow-primary/25 hover:-translate-y-0.5 transition-transform" asChild>
-                  <a href="#contact">Book Appointment</a>
+                  <a href="#book">Book Appointment</a>
                 </Button>
                 <Button size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-white/50 backdrop-blur-sm border-2 hover:bg-white hover:-translate-y-0.5 transition-transform" asChild>
                   <a href="tel:08178353776">
@@ -137,7 +188,7 @@ export default function Home() {
                 Clinic Facilities & Amenities
               </h2>
               <p className="text-lg text-muted-foreground">
-                We've designed our clinic to be accessible, comfortable, and welcoming for every patient who walks through our doors.
+                We've designed our clinic to be accessible, comfortable, and welcoming for every patient.
               </p>
             </FadeIn>
 
@@ -176,7 +227,7 @@ export default function Home() {
                     Choosing the right doctor is an important decision. Here is why our community has consistently chosen us for nearly six decades.
                   </p>
                   <Button variant="secondary" size="lg" className="rounded-full font-semibold w-fit" asChild>
-                    <a href="#contact">Visit Us Today <ArrowRight className="w-4 h-4 ml-2"/></a>
+                    <a href="#book">Book Appointment <ArrowRight className="w-4 h-4 ml-2"/></a>
                   </Button>
                 </FadeIn>
               </div>
@@ -221,28 +272,14 @@ export default function Home() {
 
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { 
-                  text: "The clinic is very good and the doctor's behavior is also very good.", 
-                  author: "Patient from Nangloi",
-                  rating: 5
-                },
-                { 
-                  text: "Dr. Sharma has been treating our family for years. Very trusted doctor who listens carefully.", 
-                  author: "Regular Patient",
-                  rating: 5
-                },
-                { 
-                  text: "Affordable and reliable healthcare right in our neighborhood. Facilities are very clean.", 
-                  author: "Local Resident",
-                  rating: 4
-                }
+                { text: "The clinic is very good and the doctor's behavior is also very good.", author: "Patient from Nangloi", rating: 5 },
+                { text: "Dr. Sharma has been treating our family for years. Very trusted doctor who listens carefully.", author: "Regular Patient", rating: 5 },
+                { text: "Affordable and reliable healthcare right in our neighborhood. Facilities are very clean.", author: "Local Resident", rating: 4 }
               ].map((review, i) => (
                 <StaggerItem key={i}>
                   <Card className="p-8 h-full bg-muted/20 border-border/50 shadow-sm relative">
                     <div className="absolute top-8 right-8 text-primary/10">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" />
-                      </svg>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" /></svg>
                     </div>
                     <div className="flex gap-1 text-amber-500 mb-6">
                       {Array.from({ length: 5 }).map((_, j) => (
@@ -258,27 +295,26 @@ export default function Home() {
           </div>
         </section>
 
-        {/* WORKING HOURS & CONTACT COMBINED SECTION */}
+        {/* WORKING HOURS + CONTACT INFO SECTION */}
         <section id="contact" className="py-24 bg-muted/50 border-t border-border">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
               
-              {/* Left Col - Working Hours & Info */}
+              {/* Left Col - Working Hours & Contact Info */}
               <div className="flex flex-col gap-10">
                 <FadeIn>
                   <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground mb-6">
                     Visit Our Clinic
                   </h2>
                   <p className="text-lg text-muted-foreground mb-8">
-                    We are conveniently located in Nangloi. Please note our operating hours below. Appointments are highly recommended to avoid wait times.
+                    Conveniently located in Nangloi, New Delhi. Appointments are recommended to reduce wait times.
                   </p>
                   
-                  <Card className="p-8 border-primary/10 shadow-lg shadow-primary/5">
+                  <Card className="p-8 border-primary/10 shadow-lg shadow-primary/5 mb-6">
                     <div className="flex items-center gap-3 mb-6">
                       <Clock className="w-6 h-6 text-primary" />
                       <h3 className="text-2xl font-bold font-display">Clinic Timings</h3>
                     </div>
-                    
                     <ul className="space-y-4">
                       <li className="flex justify-between items-center pb-4 border-b border-border/50">
                         <span className="font-semibold text-foreground">Monday – Saturday</span>
@@ -298,64 +334,179 @@ export default function Home() {
                       Appointments are recommended for consultation.
                     </div>
                   </Card>
+
+                  <Card className="p-8 shadow-xl border-border overflow-hidden relative">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+                    <h3 className="text-xl font-bold font-display mb-6">Contact Information</h3>
+                    <div className="space-y-5 mb-6">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-primary/10 text-primary rounded-xl shrink-0">
+                          <MapPin className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-foreground mb-1">Clinic Address</h4>
+                          <p className="text-muted-foreground leading-relaxed text-sm">
+                            60-A, Saini Mohalla, Vishal Colony,<br />
+                            Nangloi I, Nangloi, New Delhi – 110041
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-secondary/10 text-secondary rounded-xl shrink-0">
+                          <Phone className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-foreground mb-1">Phone</h4>
+                          <a href="tel:08178353776" className="text-lg font-bold text-foreground hover:text-primary transition-colors">
+                            08178353776
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Button className="flex-1 h-11" asChild>
+                        <a href="tel:08178353776"><Phone className="w-4 h-4 mr-2" /> Call Now</a>
+                      </Button>
+                      <Button variant="outline" className="flex-1 h-11" asChild>
+                        <a href="https://maps.google.com/?q=DR.+M.L.+SHARMA+CLINIC+60-A+Saini+Mohalla+Nangloi+Delhi" target="_blank" rel="noopener noreferrer">
+                          <MapPin className="w-4 h-4 mr-2" /> Get Directions
+                        </a>
+                      </Button>
+                    </div>
+                  </Card>
                 </FadeIn>
               </div>
 
-              {/* Right Col - Contact Card & Map */}
-              <FadeIn delay={0.2} className="flex flex-col gap-6">
-                <Card className="p-8 shadow-xl border-border overflow-hidden relative">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
-                  <h3 className="text-2xl font-bold font-display mb-8">Contact Information</h3>
+              {/* Right Col - Appointment Booking Form */}
+              <FadeIn delay={0.2} id="book" className="flex flex-col">
+                <Card className="p-8 shadow-xl border-border overflow-hidden relative h-full">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-primary"></div>
                   
-                  <div className="space-y-6 mb-8">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-primary/10 text-primary rounded-xl shrink-0">
-                        <MapPin className="w-6 h-6" />
+                  {submitted ? (
+                    <div className="flex flex-col items-center justify-center text-center h-full py-16 gap-6">
+                      <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
+                        <CheckCircle2 className="w-10 h-10 text-green-600" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-foreground mb-1">Clinic Address</h4>
-                        <p className="text-muted-foreground leading-relaxed">
-                          60-A, Saini Mohalla, Vishal Colony,<br />
-                          Nangloi I, Nangloi,<br />
-                          New Delhi, Delhi 110041
+                        <h3 className="text-2xl font-bold text-foreground mb-2">Appointment Requested!</h3>
+                        <p className="text-muted-foreground max-w-sm">
+                          Thank you! We have received your appointment request. Our team will contact you shortly to confirm the timing.
                         </p>
                       </div>
+                      <Button variant="outline" onClick={() => setSubmitted(false)} className="mt-2">
+                        Book Another Appointment
+                      </Button>
                     </div>
-                    
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-secondary/10 text-secondary rounded-xl shrink-0">
-                        <Phone className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-foreground mb-1">Phone Number</h4>
-                        <a href="tel:08178353776" className="text-xl font-bold text-foreground hover:text-primary transition-colors block">
-                          08178353776
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  ) : (
+                    <>
+                      <h3 className="text-2xl font-bold font-display mb-2">Book an Appointment</h3>
+                      <p className="text-muted-foreground mb-8 text-sm">
+                        Fill in the form below and we'll get back to you to confirm your visit.
+                      </p>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-border">
-                    <Button className="flex-1 h-12 text-base" asChild>
-                      <a href="tel:08178353776"><Phone className="w-4 h-4 mr-2" /> Call Now</a>
-                    </Button>
-                    <Button variant="outline" className="flex-1 h-12 text-base" asChild>
-                      <a href="https://maps.google.com/?q=DR.+M.L.+SHARMA+CLINIC+Nangloi" target="_blank" rel="noopener noreferrer">
-                        <MapPin className="w-4 h-4 mr-2" /> Get Directions
-                      </a>
-                    </Button>
-                  </div>
+                      <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                          <div className="space-y-2">
+                            <Label htmlFor="name">Full Name <span className="text-destructive">*</span></Label>
+                            <Input
+                              id="name"
+                              name="name"
+                              value={form.name}
+                              onChange={handleChange}
+                              placeholder="Your full name"
+                              required
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="phone">Phone Number <span className="text-destructive">*</span></Label>
+                            <Input
+                              id="phone"
+                              name="phone"
+                              type="tel"
+                              value={form.phone}
+                              onChange={handleChange}
+                              placeholder="e.g. 9876543210"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="email">Email Address <span className="text-muted-foreground text-xs">(optional)</span></Label>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            placeholder="your@email.com"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                          <div className="space-y-2">
+                            <Label htmlFor="preferredDate">Preferred Date <span className="text-muted-foreground text-xs">(optional)</span></Label>
+                            <Input
+                              id="preferredDate"
+                              name="preferredDate"
+                              type="date"
+                              value={form.preferredDate}
+                              onChange={handleChange}
+                              min={new Date().toISOString().split("T")[0]}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="preferredTime">Preferred Time <span className="text-muted-foreground text-xs">(optional)</span></Label>
+                            <select
+                              id="preferredTime"
+                              name="preferredTime"
+                              value={form.preferredTime}
+                              onChange={handleChange}
+                              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-foreground"
+                            >
+                              <option value="">Select a slot</option>
+                              <option value="Morning (9 AM – 1 PM)">Morning (9 AM – 1 PM)</option>
+                              <option value="Evening (5 PM – 8 PM)">Evening (5 PM – 8 PM)</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="message">Reason / Message <span className="text-muted-foreground text-xs">(optional)</span></Label>
+                          <Textarea
+                            id="message"
+                            name="message"
+                            value={form.message}
+                            onChange={handleChange}
+                            placeholder="Describe your concern or reason for visit..."
+                            rows={3}
+                          />
+                        </div>
+
+                        {formError && (
+                          <p className="text-sm text-destructive bg-destructive/10 p-3 rounded-lg">{formError}</p>
+                        )}
+
+                        <Button
+                          type="submit"
+                          className="w-full h-12 text-base font-semibold rounded-xl"
+                          disabled={createAppointment.isPending}
+                        >
+                          {createAppointment.isPending ? (
+                            <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Submitting...</>
+                          ) : (
+                            <><CalendarCheck className="w-4 h-4 mr-2" /> Confirm Appointment Request</>
+                          )}
+                        </Button>
+
+                        <p className="text-xs text-muted-foreground text-center">
+                          We'll call you to confirm the appointment. For urgent care, please call us directly.
+                        </p>
+                      </form>
+                    </>
+                  )}
                 </Card>
-
-                {/* Map Placeholder */}
-                <div className="rounded-2xl overflow-hidden h-64 bg-muted border border-border relative flex items-center justify-center group">
-                  <div className="absolute inset-0 bg-[url('https://maps.googleapis.com/maps/api/staticmap?center=28.6811,77.0658&zoom=15&size=800x400&sensor=false')] opacity-30 grayscale saturate-0 group-hover:saturate-100 group-hover:opacity-100 transition-all duration-500 bg-cover bg-center"></div>
-                  <Button variant="secondary" className="relative z-10 shadow-lg" asChild>
-                     <a href="https://maps.google.com/?q=DR.+M.L.+SHARMA+CLINIC+Nangloi" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
-                  </Button>
-                </div>
               </FadeIn>
-              
             </div>
           </div>
         </section>
@@ -374,7 +525,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Button size="lg" variant="secondary" className="h-14 px-8 text-lg rounded-full shadow-xl hover:scale-105 transition-transform" asChild>
-                  <a href="#contact">Book Appointment</a>
+                  <a href="#book">Book Appointment</a>
                 </Button>
                 <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-full text-white border-white/30 hover:bg-white hover:text-primary transition-all" asChild>
                   <a href="tel:08178353776">Call Clinic</a>

@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export interface Appointment {
   id: number;
@@ -22,22 +19,5 @@ export interface Appointment {
   /** @nullable */
   message?: string | null;
   status: string;
-  createdAt: string;
-}
-
-export interface CreateAppointmentBody {
-  name: string;
-  phone: string;
-  /** @nullable */
-  email?: string | null;
-  /** @nullable */
-  preferredDate?: string | null;
-  /** @nullable */
-  preferredTime?: string | null;
-  /** @nullable */
-  message?: string | null;
-}
-
-export interface ErrorResponse {
-  error: string;
+  createdAt: Date;
 }
