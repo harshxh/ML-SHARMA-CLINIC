@@ -1,0 +1,17 @@
+packages:
+  "framer-motion": "For premium smooth scroll animations and page transitions"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging tailwind classes without style conflicts"
+
+images:
+  - path: "artifacts/dr-sharma-clinic/public/images/hero-bg.png"
+    description: "Abstract elegant medical background with soft light leaks in deep blue and teal colors, very clean and minimal, suitable for a professional clinic website header."
+    aspect_ratio: "16:9"
+  - path: "artifacts/dr-sharma-clinic/public/images/pattern-bg.png"
+    description: "Subtle geometric medical cross pattern on a white background, extremely light and barely visible, for a clean website section background."
+    aspect_ratio: "16:9"
+
+notes:
+  - Frontend-only static website built with React and Tailwind CSS.
+  - Smooth scrolling enabled for anchor links.
+  - No backend integration required as per instructions. All content is hardcoded.

@@ -1,0 +1,438 @@
+Below is your **FINAL READY-TO-USE WEBSITE GENERATION PROMPT**.
+You can **copy-paste it directly into a website-building AI**.
+
+---
+
+# PREMIUM MEDICAL CLINIC WEBSITE GENERATION PROMPT
+
+You are an **award-winning web design agency and senior UI/UX architect**.
+Design a **premium, modern, high-converting healthcare clinic website** for the following business.
+
+The website must look **professional, trustworthy, minimal, and conversion-focused**, not AI-generated.
+
+The design should feel like a **real medical brand website created by a top digital agency**.
+
+Use **clean layouts, modern spacing, subtle animations, strong hierarchy, and mobile-first responsiveness.**
+
+---
+
+# BUSINESS INFORMATION
+
+**Business Name:**
+DR. M.L. SHARMA CLINIC
+
+**Tagline:**
+A Unit of MLS Healthcare Pvt. Ltd.
+
+**Established:**
+Since 1966
+
+**Category:**
+Healthcare Clinic
+
+**Description:**
+A trusted healthcare clinic serving the community with professional medical consultation and patient-focused care.
+
+**Address:**
+60-A, Saini Mohalla, Vishal Colony, Nangloi I, Nangloi, New Delhi, Delhi 110041
+
+**Phone:**
+08178353776
+
+**City:**
+New Delhi
+
+**Ratings:**
+4.5 Star Patient Rating
+
+**Working Hours:**
+Monday – Saturday
+9 AM – 1 PM
+5 PM – 8 PM
+
+**Clinic Amenities:**
+
+• Wheelchair Accessible Parking
+• Gender-Neutral Toilets
+• Restroom Facility
+• Appointment Recommended
+
+---
+
+# BUSINESS POSITIONING STRATEGY
+
+### Target Customer Persona
+
+Primary Audience:
+
+Local patients and families in New Delhi who want:
+
+• Reliable medical consultation
+• Experienced doctor they can trust
+• Convenient neighborhood healthcare
+• Affordable and accessible treatment
+
+Demographics:
+
+• Age: 25 – 65
+• Families, working professionals, elderly patients
+• Residents living near Nangloi and surrounding areas
+
+---
+
+### Unique Selling Proposition (USP)
+
+A **trusted local healthcare clinic serving patients since 1966**, combining **experience, patient-friendly care, and community trust**.
+
+---
+
+### Emotional Marketing Angle
+
+Focus on:
+
+**Trust + Care + Generational Reliability**
+
+Messaging theme:
+
+“Your family’s trusted healthcare partner for decades.”
+
+Highlight:
+
+• Long-standing reputation
+• Friendly doctor behavior
+• Patient-first approach
+• Local community trust
+
+---
+
+### Competitive Positioning
+
+Position the clinic as:
+
+**A trusted neighborhood healthcare clinic with decades of experience and personalized care.**
+
+Differentiate through:
+
+• Established reputation since 1966
+• Compassionate patient treatment
+• Trusted by the local community
+• Simple and accessible healthcare experience
+
+---
+
+# BRAND STYLE GUIDELINES
+
+### Brand Tone & Voice
+
+Professional
+Caring
+Trustworthy
+Warm
+Community-focused
+Reassuring
+
+The copy should feel:
+
+• Friendly but professional
+• Patient-centric
+• Simple and easy to understand
+
+Avoid overly technical language.
+
+---
+
+# COLOR PALETTE (Minimal & Premium)
+
+Primary Color
+Medical Blue
+#1E88E5
+
+Secondary Color
+Soft Teal
+#26A69A
+
+Background
+Clean White
+#FFFFFF
+
+Neutral Section Background
+#F6F9FC
+
+Accent / CTA Color
+Deep Navy
+#0D47A1
+
+Text Color
+Dark Grey
+#2C2C2C
+
+The color palette must feel:
+
+• Medical
+• Calm
+• Clean
+• Professional
+
+---
+
+# TYPOGRAPHY STYLE
+
+Headings
+Modern Sans Serif
+Example: Poppins / Montserrat
+
+Body Text
+Clean readable font
+Example: Open Sans / Inter
+
+Style:
+
+• Clear hierarchy
+• Large readable headings
+• Comfortable spacing
+• Mobile friendly
+
+---
+
+# WEBSITE STRUCTURE
+
+The website must be **conversion-focused and mobile-first.**
+
+Use **clear CTAs such as:**
+
+“Book Appointment”
+“Call Now”
+“Visit Clinic”
+
+---
+
+# HERO SECTION (Most Important)
+
+Full width modern hero section.
+
+Visual:
+
+Clean clinic environment or professional doctor consultation image.
+
+Content Layout:
+
+Headline:
+
+Trusted Healthcare Since 1966
+
+Subheadline:
+
+Compassionate and reliable medical care for you and your family.
+
+Short Description:
+
+Providing professional consultation and patient-focused care to the local community of New Delhi for decades.
+
+Primary CTA Button:
+
+Book Appointment
+
+Secondary CTA Button:
+
+Call Now
+
+Display:
+
+• 4.5 ⭐ Patient Rating
+• Established Since 1966
+
+Add a **sticky call button for mobile users.**
+
+---
+
+# ABOUT SECTION
+
+Headline:
+
+A Trusted Healthcare Clinic Serving the Community
+
+Content:
+
+DR. M.L. SHARMA CLINIC has been a trusted healthcare destination for patients in New Delhi since 1966. With a commitment to compassionate treatment and professional medical consultation, the clinic focuses on delivering quality care in a comfortable and patient-friendly environment.
+
+Patients appreciate the clinic for its welcoming approach, reliable healthcare services, and dedication to community wellbeing.
+
+---
+
+# SERVICES / CLINIC FACILITIES SECTION
+
+Headline:
+
+Clinic Facilities & Patient Amenities
+
+Display in icon cards:
+
+Wheelchair Accessible Parking
+
+Gender-Neutral Toilets
+
+Restroom Facility
+
+Appointment Based Consultation
+
+Design:
+
+Minimal icon cards with soft shadows.
+
+---
+
+# WHY CHOOSE US SECTION
+
+Headline:
+
+Why Patients Trust Our Clinic
+
+4 feature blocks:
+
+Decades of Experience
+
+Serving the community since 1966 with trusted medical care.
+
+Patient-Focused Approach
+
+Friendly consultation with attention to patient comfort.
+
+Trusted by Local Families
+
+A reputation built through years of patient satisfaction.
+
+Accessible & Convenient
+
+Easily located in Nangloi with essential clinic facilities.
+
+---
+
+# PATIENT REVIEWS SECTION
+
+Headline:
+
+What Our Patients Say
+
+Example testimonial:
+
+“The clinic is very good and the doctor's behavior is also very good.”
+
+Display star rating:
+
+4.5 ★ Patient Rating
+
+Use a **clean testimonial slider.**
+
+---
+
+# WORKING HOURS SECTION
+
+Headline:
+
+Clinic Timings
+
+Display in clean card layout:
+
+Monday – Saturday
+9:00 AM – 1:00 PM
+5:00 PM – 8:00 PM
+
+Note:
+
+Appointments are recommended.
+
+---
+
+# CONTACT / LOCATION SECTION
+
+Headline:
+
+Visit Our Clinic
+
+Address:
+
+60-A, Saini Mohalla
+Vishal Colony, Nangloi I
+Nangloi, New Delhi
+Delhi 110041
+
+Phone:
+
+08178353776
+
+Buttons:
+
+Call Now
+Get Directions
+Book Appointment
+
+Include **Google Map embed style map section.**
+
+---
+
+# FINAL CTA SECTION
+
+Headline:
+
+Your Health Matters
+
+Description:
+
+Book your consultation today and experience trusted healthcare backed by decades of community trust.
+
+Buttons:
+
+Book Appointment
+Call Clinic
+
+---
+
+# FOOTER
+
+Include:
+
+Clinic Name
+
+DR. M.L. SHARMA CLINIC
+A Unit of MLS Healthcare Pvt. Ltd.
+
+Quick Links
+
+Home
+About
+Facilities
+Reviews
+Contact
+
+Contact Info
+
+Phone
+Address
+Working Hours
+
+Copyright
+
+© DR. M.L. SHARMA CLINIC — All Rights Reserved
+
+---
+
+# DESIGN REQUIREMENTS
+
+Use:
+
+• Modern grid layout
+• Premium whitespace
+• Subtle hover animations
+• Soft shadows
+• Rounded cards
+• Professional icons
+
+Ensure:
+
+Mobile-first responsive design.
+
+The website must feel like it was designed by a **professional healthcare web design agency**, not a template.
+
+---
+
+If you want, I can also show you **how to turn this into a ₹20k–₹50k website service package for local businesses** and scale it into a **mini web agency in Delhi.**
